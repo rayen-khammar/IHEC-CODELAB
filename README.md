@@ -1,8 +1,12 @@
+
 # IHEC-CODELAB — BVMT Intelligent Trading Assistant (Hackathon Prototype)
 
 This repo is a **system integration demo**. It wires price prediction, sentiment, anomaly detection, and a decision engine into an end‑to‑end trading assistant. Models are **not retrained**; the focus is robust orchestration and safe fallbacks.
 
 ⚠️ **Demo scope**: the project is currently a **working demo** to show how the assistant behaves end‑to‑end. It uses **local APIs** and **provided historical data**. Live BVMT scraping is optional and can be plugged in later.
+
+#Presentation Link :
+https://docs.google.com/presentation/d/1-gZUfbkI96VEpF30lN71NUjE_L1CNOCg/edit?usp=sharing&ouid=112705951149915242501&rtpof=true&sd=true
 
 ## What’s inside (high‑level)
 

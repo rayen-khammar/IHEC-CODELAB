@@ -2,6 +2,8 @@
 
 This repo is a **system integration demo**. It wires price prediction, sentiment, anomaly detection, and a decision engine into an end‑to‑end trading assistant. Models are **not retrained**; the focus is robust orchestration and safe fallbacks.
 
+⚠️ **Demo scope**: the project is currently a **working demo** to show how the assistant behaves end‑to‑end. It uses **local APIs** and **provided historical data**. Live BVMT scraping is optional and can be plugged in later.
+
 ## What’s inside (high‑level)
 
 - **Decision engine**: [decision_engine.py](decision_engine.py)
@@ -73,6 +75,15 @@ This repo is a **system integration demo**. It wires price prediction, sentiment
 
 - http://localhost:8000/decision_demo?company=ATTIJARI%20BANK&alert_stock=BIAT
 
+## How to choose a bank (API demo)
+
+Use the decision demo endpoint and pass a company name:
+
+- Example (ATTIJARI BANK):
+	- http://localhost:8000/decision_demo?company=ATTIJARI%20BANK&alert_stock=BIAT
+
+The Stock page is wired to display demo values and can be switched per company in the dropdown.
+
 ## API endpoints (local)
 
 - /decision_demo
@@ -81,6 +92,12 @@ This repo is a **system integration demo**. It wires price prediction, sentiment
 
 - /codes, /latest, /history
 	- BVMT live data (if BVMT_URL is set to an actual cotation table page)
+
+## Why we use cahier data for the demo
+
+- The BVMT homepage does not expose a reliable HTML table for scraping.
+- For a stable demo, we rely on **cahier-de-charges-code_lab2.0** historical data.
+- This keeps the pipeline deterministic and reproducible.
 
 ## Why the UI can appear blank
 
@@ -99,6 +116,22 @@ If the Stock page shows “—” values, it’s usually one of these:
 4) **Signal fusion** in `decision_engine.py`
 5) **Anomaly detection** (market + model error)
 6) **Portfolio projection** (cash + holdings using forecasted prices)
+
+Validation and model quality visuals are available in the cahier pipeline outputs (plots/metrics in the cahier notebooks/scripts). These are used to justify that the demo predictions are reasonable for the hackathon scope.
+
+## Other components
+
+- **XAI / explainability**: xai_module/
+	- price_explainer.py, sentiment_explainer.py, anomaly_explainer.py, report_generator.py
+
+- **Data scraping**: Data Scrapping/
+	- scrapping.py (news collection)
+	- sentimental_analysis.py (sentiment score)
+
+- **Anomaly detection**: anomalie/
+	- anomaly_detector.py + alerts.py
+
+- **All models**: cahier-de-charges-code_lab2.0/models/
 
 ## Notes
 

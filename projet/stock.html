@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Stock — BVMT Assistant</title>
+
+<link rel="stylesheet" href="./css/styles.css">
+<link rel="stylesheet" href="./css/stock.css">
+</head>
+<!-- BUY MODAL -->
+<div id="buyModal" class="trade-modal hidden">
+  <div class="trade-box">
+    <div class="trade-title-row">
+      <h3 style="margin:0">Buy Stock</h3>
+      <button id="closeTradeBtn" class="icon-btn" type="button">✕</button>
+    </div>
+
+    <div class="trade-meta">
+      <div class="mini">Symbol</div>
+      <div id="tradeSymbol" class="trade-strong">—</div>
+    </div>
+
+    <div class="trade-meta">
+      <div class="mini">Price (pred 1D)</div>
+      <div id="tradePrice" class="trade-strong">—</div>
+    </div>
+
+    <div class="trade-meta">
+      <div class="mini">Available funds</div>
+      <div id="tradeFunds" class="trade-strong">—</div>
+    </div>
+
+    <label class="mini" style="margin-top:10px;display:block">Quantity</label>
+    <input id="tradeQty" type="number" min="1" step="1" class="profile-input" placeholder="e.g. 10"/>
+
+    <div class="trade-actions">
+      <button id="confirmBuyBtn" class="buy-btn" type="button">Confirm Buy</button>
+      <button id="cancelTradeBtn" class="btn" type="button">Cancel</button>
+    </div>
+
+    <div id="tradeMsg" class="mini" style="margin-top:10px;"></div>
+  </div>
+</div>
+
+<body>
+
+
+<!-- NAVBAR -->
+<div class="nav">
+  <div class="container nav-inner">
+
+    <div class="brand">
+      <img src="./assets/AlphaPulse Logo.svg" class="brand-logo">
+    </div>
+
+    <div class="nav-links">
+      <a href="./index.html">Home</a>
+      <a href="./dashboard.html">Dashboard</a>
+      <a class="active" href="./stock.html">Stock</a>
+      <a href="./alerts.html">Alerts</a>
+      <a href="./profile.html">Profile</a>
+      <a href="./portfolio.html">Portfolio</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- MAIN -->
+<main class="container">
+
+<div class="header">
+  <div>
+    <h1>Stock Intelligence</h1>
+    <div class="sub">Predictions, sentiment, indicators and explanations</div>
+  </div>
+</div>
+
+<!-- ENTERPRISE LIST -->
+<div class="card spacing-xl">
+
+<h3 class="stock-section-title">Tunisian Companies</h3>
+
+<div class="stock-select-row">
+
+  <select id="companySelect" class="stock-select"></select>
+
+  <!-- BIG BUY BUTTON -->
+  <button id="buyBtn" class="buy-btn">
+    BUY
+  </button>
+
+</div>
+
+
+</div>
+
+<!-- GRID -->
+<div class="stock-grid">
+
+<!-- PREDICTIONS -->
+<div class="card spacing-xl">
+
+<div class="stock-card-header">
+  <h3>Predictions</h3>
+  <span class="tooltip">
+    ?
+    <span class="tooltip-text" id="predictionReason">
+      Explanation will come from API
+    </span>
+  </span>
+</div>
+
+<div class="stock-predictions">
+
+<div>
+<div class="mini">1 Day Prediction</div>
+<div id="pred1d" class="stock-big-value">--</div>
+</div>
+
+<div>
+<div class="mini">5 Day Prediction</div>
+<div id="pred5d" class="stock-big-value">--</div>
+</div>
+
+</div>
+
+</div>
+
+<!-- RECOMMENDATION -->
+<div class="card spacing-xl">
+
+<div class="stock-card-header">
+  <h3>Recommendation</h3>
+  <span class="tooltip">
+    ?
+    <span class="tooltip-text" id="recommendReason">
+      Explanation will come from API
+    </span>
+  </span>
+</div>
+
+<div id="recommendation" class="stock-big-value">--</div>
+
+</div>
+
+<!-- SENTIMENT -->
+<div class="card spacing-xl">
+
+<div class="stock-card-header">
+  <h3>Market Sentiment</h3>
+  <span class="tooltip">
+    ?
+    <span class="tooltip-text" id="sentimentReason">
+      Explanation will come from API
+    </span>
+  </span>
+</div>
+
+<div id="sentimentValue" class="stock-big-value">--</div>
+
+</div>
+
+<!-- INDICATORS -->
+<div class="card spacing-xl">
+
+<div class="stock-card-header">
+  <h3>Indicators</h3>
+  <span class="tooltip">
+    ?
+    <span class="tooltip-text" id="indicatorReason">
+      Explanation will come from API
+    </span>
+  </span>
+</div>
+
+<div class="indicator-grid">
+
+<div class="indicator-box">
+RSI
+<div id="rsiVal">--</div>
+</div>
+
+<div class="indicator-box">
+MACD
+<div id="macdVal">--</div>
+</div>
+
+<div class="indicator-box">
+Signal
+<div id="signalVal">--</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</main>
+
+</body>
+<script src="./js/portfolioStore.js"></script>
+
+<script src="./js/stock.js" defer></script>
+
+</html>

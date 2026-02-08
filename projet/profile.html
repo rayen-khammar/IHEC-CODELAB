@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BVMT Assistant — Profile</title>
+
+  <!-- Your global styles for navbar + base -->
+  <link rel="stylesheet" href="./css/styles.css">
+  <!-- Profile-only styles -->
+<link rel="stylesheet" href="./css/profile.css">
+
+  <script src="./js/profile.js" defer></script>
+
+
+</head>
+<body>
+
+  <!-- NAV (keep consistent) -->
+  <div class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="./index.html">      <img src="./assets/AlphaPulse Logo.svg" class="brand-logo">
+      <div class="nav-links">
+        <a href="./index.html">Home</a>
+        <a href="./dashboard.html">Dashboard</a>
+        <a href="./stock.html?symbol=SFBT">Stock</a>
+        <a href="./alerts.html">Alerts</a>
+        <a class="active" href="./profile.html">Profile</a>
+                <a href="./portfolio.html">Portfolio</a>
+      </div>
+    </div>
+  </div>
+
+  <main class="container profile-page" id="profile-root">
+    <div class="profile-header">
+      <div>
+        <h1>Financial Profile</h1>
+        <div class="sub">Set preferences once; we tailor risk, alerts, and recommendations.</div>
+      </div>
+      <div class="profile-header-actions">
+        <button class="btn" id="btn-reset" type="button">Reset</button>
+        <button class="btn" id="btn-save" type="button">Save</button>
+      </div>
+    </div>
+
+    <div class="profile-layout">
+
+      <!-- LEFT: Form -->
+      <section class="profile-form">
+
+        <!-- Section: Personal -->
+        <div class="p-card">
+          <div class="p-card-head">
+            <div>
+              <div class="p-title">Personal</div>
+              <div class="p-hint">Used for risk calibration. No negatives allowed.</div>
+            </div>
+          </div>
+
+          <div class="p-grid-2">
+            <div class="p-field">
+              <label for="fullName">Full name</label>
+              <input id="fullName" class="p-input" type="text" placeholder="e.g. Amine Ayari" maxlength="60" />
+              <div class="p-error" data-error-for="fullName"></div>
+            </div>
+
+            <div class="p-field">
+              <label for="age">Age</label>
+              <input id="age" class="p-input" type="number" inputmode="numeric" min="16" max="90" step="1" placeholder="18" />
+              <div class="p-error" data-error-for="age"></div>
+            </div>
+
+            <div class="p-field">
+              <label for="monthlyIncome">Monthly income (TND)</label>
+              <input id="monthlyIncome" class="p-input" type="number" inputmode="numeric" min="0" max="1000000" step="50" placeholder="1500" />
+              <div class="p-error" data-error-for="monthlyIncome"></div>
+            </div>
+
+            <div class="p-field">
+              <label for="investmentBudget">Investment budget (TND)</label>
+              <input id="investmentBudget" class="p-input" type="number" inputmode="numeric" min="0" max="10000000" step="100" placeholder="5000" />
+              <div class="p-error" data-error-for="investmentBudget"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section: Risk Drivers -->
+        <div class="p-card">
+          <div class="p-card-head">
+            <div>
+              <div class="p-title">Risk drivers</div>
+              <div class="p-hint">These determine your risk score (0–100).</div>
+            </div>
+          </div>
+
+          <div class="p-grid-2">
+            <div class="p-field">
+              <label for="horizon">Investment horizon</label>
+              <select id="horizon" class="p-input">
+                <option value="0">Less than 1 year</option>
+                <option value="1">1–3 years</option>
+                <option value="2">3–7 years</option>
+                <option value="3">7+ years</option>
+              </select>
+              <div class="p-error" data-error-for="horizon"></div>
+            </div>
+
+            <div class="p-field">
+              <label for="experience">Trading experience</label>
+              <select id="experience" class="p-input">
+                <option value="0">Beginner</option>
+                <option value="1">Intermediate</option>
+                <option value="2">Advanced</option>
+              </select>
+            </div>
+
+            <div class="p-field">
+              <label for="lossReaction">If portfolio drops 20%</label>
+              <select id="lossReaction" class="p-input">
+                <option value="0">Sell quickly</option>
+                <option value="1">Hold</option>
+                <option value="2">Buy more</option>
+              </select>
+            </div>
+
+            <div class="p-field">
+              <label for="liquidityNeed">Need for liquidity</label>
+              <select id="liquidityNeed" class="p-input">
+                <option value="2">Low (rare withdrawals)</option>
+                <option value="1">Medium</option>
+                <option value="0">High (need cash often)</option>
+              </select>
+            </div>
+
+            <div class="p-field">
+              <label for="incomeStability">Income stability</label>
+              <select id="incomeStability" class="p-input">
+                <option value="2">Stable</option>
+                <option value="1">Medium</option>
+                <option value="0">Unstable</option>
+              </select>
+            </div>
+
+            <div class="p-field">
+              <label for="goal">Primary goal</label>
+              <select id="goal" class="p-input">
+                <option value="0">Capital preservation</option>
+                <option value="1">Balanced growth</option>
+                <option value="2">Aggressive growth</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="p-inline-note">
+            Tip: We’ll use this profile to tune alerts (more alerts for high-risk users, less noise for conservative users).
+          </div>
+        </div>
+
+        <!-- Section: Allocation -->
+        <div class="p-card">
+          <div class="p-card-head">
+            <div>
+              <div class="p-title">Allocation (must total 100%)</div>
+              <div class="p-hint">Use sliders. We auto-balance the remainder.</div>
+            </div>
+            <button class="p-link-btn" id="btn-auto" type="button">Auto-fill</button>
+          </div>
+
+          <div class="alloc">
+            <div class="alloc-row">
+              <div class="alloc-left">
+                <div class="alloc-name">Stable stocks</div>
+                <div class="alloc-desc">Low volatility / blue chips</div>
+              </div>
+              <div class="alloc-mid">
+                <input type="range" id="allocStable" min="0" max="100" step="1" />
+              </div>
+              <div class="alloc-right">
+                <input class="alloc-num" id="allocStableNum" type="number" min="0" max="100" step="1" />
+                <span class="alloc-unit">%</span>
+              </div>
+            </div>
+
+            <div class="alloc-row">
+              <div class="alloc-left">
+                <div class="alloc-name">Bonds</div>
+                <div class="alloc-desc">Lower risk income</div>
+              </div>
+              <div class="alloc-mid">
+                <input type="range" id="allocBonds" min="0" max="100" step="1" />
+              </div>
+              <div class="alloc-right">
+                <input class="alloc-num" id="allocBondsNum" type="number" min="0" max="100" step="1" />
+                <span class="alloc-unit">%</span>
+              </div>
+            </div>
+
+            <div class="alloc-row">
+              <div class="alloc-left">
+                <div class="alloc-name">Liquidity</div>
+                <div class="alloc-desc">Cash / near-cash</div>
+              </div>
+              <div class="alloc-mid">
+                <input type="range" id="allocCash" min="0" max="100" step="1" />
+              </div>
+              <div class="alloc-right">
+                <input class="alloc-num" id="allocCashNum" type="number" min="0" max="100" step="1" />
+                <span class="alloc-unit">%</span>
+              </div>
+            </div>
+
+            <div class="alloc-row">
+              <div class="alloc-left">
+                <div class="alloc-name">High growth</div>
+                <div class="alloc-desc">Higher risk / momentum</div>
+              </div>
+              <div class="alloc-mid">
+                <input type="range" id="allocRisk" min="0" max="100" step="1" />
+              </div>
+              <div class="alloc-right">
+                <input class="alloc-num" id="allocRiskNum" type="number" min="0" max="100" step="1" />
+                <span class="alloc-unit">%</span>
+              </div>
+            </div>
+
+            <div class="alloc-footer">
+              <div class="alloc-sum">
+                Total: <span id="allocTotal">100</span>%
+              </div>
+              <div class="p-error" data-error-for="allocation"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section: Favorites -->
+        <div class="p-card">
+          <div class="p-card-head">
+            <div>
+              <div class="p-title">Favorite stocks</div>
+              <div class="p-hint">Add tickers you want to track (press Enter).</div>
+            </div>
+          </div>
+
+          <div class="fav">
+            <div class="fav-input-row">
+              <input id="favInput" class="p-input fav-input" type="text" placeholder="e.g. SFBT" maxlength="12" />
+              <button class="btn" id="btnAddFav" type="button">Add</button>
+            </div>
+            <div class="p-error" data-error-for="favorites"></div>
+
+            <div class="fav-chips" id="favChips"></div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- RIGHT: Summary -->
+      <aside class="profile-summary">
+        <div class="p-card p-card--sticky">
+          <div class="summary-head">
+            <div>
+              <div class="p-title">Risk summary</div>
+              <div class="p-hint">Updates live as you edit.</div>
+            </div>
+            <span class="risk-badge" id="riskBadge">—</span>
+          </div>
+
+          <div class="score">
+            <div class="score-num" id="riskScore">0</div>
+            <div class="score-label" id="riskLabel">Complete the form</div>
+          </div>
+
+          <div class="score-bar">
+            <div class="score-bar-fill" id="riskBar"></div>
+          </div>
+
+          <div class="summary-box" id="riskExplain">
+            Fill the profile to compute a consistent risk level.
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="p-title" style="font-size: 13px;">Suggested allocation</div>
+          <div class="suggest" id="suggestedAlloc"></div>
+
+          <div class="divider"></div>
+
+          <button class="btn btn-primary" id="btnCompute" type="button">Compute risk</button>
+          <div class="p-hint" style="margin-top:10px;">We save locally in your browser.</div>
+        </div>
+      </aside>
+
+    </div>
+  </main>
+
+  <div id="toast-host" class="toast-host"></div>
+
+  <script type="module" src="./js/profile.js"></script>
+</body>
+</html>
+

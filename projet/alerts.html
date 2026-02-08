@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BVMT Assistant — Alerts</title>
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+
+  <div class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="./index.html">      <img src="./assets/AlphaPulse Logo.svg" class="brand-logo">
+      <div class="nav-links">
+        <a href="./index.html">Home</a>
+        <a href="./dashboard.html">Dashboard</a>
+        <a href="./stock.html?symbol=SFBT">Stock</a>
+        <a class="active" href="./alerts.html">Alerts</a>
+        <a href="./profile.html">Profile</a>
+                <a href="./portfolio.html">Portfolio</a>
+      </div>
+    </div>
+  </div>
+
+  <main class="container" id="alerts-root">
+    <div class="header">
+      <div>
+        <h1>Alerts</h1>
+        <div class="sub">Real-time anomaly feed with filters</div>
+      </div>
+      <button class="btn" id="btn-refresh">Refresh</button>
+    </div>
+
+    <div class="row" style="margin-top: 10px;">
+      <div class="sub">Last update: <span id="alerts-updated">—</span></div>
+      <select id="filter" class="btn" aria-label="Filter alert type">
+        <option value="ALL">All</option>
+        <option value="VOLUME_SPIKE">Volume Spike</option>
+        <option value="PRICE_SPIKE">Price Spike</option>
+        <option value="PRICE_MOVE_NO_NEWS">Price Move No News</option>
+      </select>
+    </div>
+
+    <section class="card" style="margin-top: 14px;">
+      <div class="card-title">Alerts feed</div>
+
+      <div class="show-while-loading" style="margin-top: 10px;">
+        <div class="skeleton" style="width: 85%"></div>
+        <div class="skeleton" style="width: 75%; margin-top: 10px"></div>
+        <div class="skeleton" style="width: 90%; margin-top: 10px"></div>
+      </div>
+
+      <div class="hide-while-loading">
+        <div id="alerts-list" style="margin-top: 10px;"></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast-host" class="toast-host"></div>
+  <script type="module" src="./js/alerts.js"></script>
+</body>
+</html>

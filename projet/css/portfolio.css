@@ -1,0 +1,59 @@
+.portfolio-summary{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  margin-top:14px;
+}
+
+.portfolio-big{
+  font-size:32px;
+  font-weight:800;
+  margin-top:6px;
+}
+
+.portfolio-grid{
+  margin-top:20px;
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:14px;
+}
+
+.stock-card{
+  padding:18px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,0.06);
+  background:rgba(255,255,255,0.03);
+  transition:0.2s;
+}
+
+.stock-card:hover{
+  border-color:rgba(240,185,11,0.4);
+}
+
+.stock-name{
+  font-size:16px;
+  font-weight:800;
+}
+
+.stock-price{
+  font-size:26px;
+  font-weight:800;
+  margin-top:10px;
+}
+
+.stock-meta{
+  margin-top:10px;
+  font-size:13px;
+  color:#9fb0c9;
+}
+
+.risk-box{
+  margin-top:12px;
+  padding:10px;
+  border-radius:10px;
+  background:rgba(0,0,0,0.25);
+}
+
+.risk-low{color:#02c076;}
+.risk-mid{color:#f0b90b;}
+.risk-high{color:#f6465d;}

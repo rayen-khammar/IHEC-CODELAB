@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Portfolio — BVMT Assistant</title>
+
+<link rel="stylesheet" href="./css/styles.css">
+<link rel="stylesheet" href="./css/portfolio.css">
+
+</head>
+
+<body>
+
+<div class="nav">
+  <div class="container nav-inner">
+          <img src="./assets/AlphaPulse Logo.svg" class="brand-logo">
+
+    <div class="nav-links">
+      <a href="./index.html">Home</a>
+      <a href="./dashboard.html">Dashboard</a>
+      <a href="./stock.html">Stock</a>
+      <a href="./alerts.html">Alerts</a>
+      <a href="./profile.html">Profile</a>
+      <a class="active" href="./portfolio.html">Portfolio</a>
+    </div>
+  </div>
+</div>
+
+<main class="container">
+
+<div class="header">
+  <div>
+    <h1>My Portfolio</h1>
+    <div class="sub">Positions and personalized risk per stock</div>
+  </div>
+
+  <button class="btn" onclick="renderPortfolio()">Refresh</button>
+</div>
+
+<div class="portfolio-summary">
+
+  <div class="card">
+    <div class="mini">Your Risk Score</div>
+    <div id="userRiskScore" class="portfolio-big">--</div>
+    <div id="userRiskLabel" class="sub">--</div>
+  </div>
+
+  <div class="card">
+    <div class="mini">Portfolio Value</div>
+    <div id="portfolioValue" class="portfolio-big">--</div>
+  </div>
+
+</div>
+
+<div id="portfolioGrid" class="portfolio-grid"></div>
+
+</main>
+
+<script src="./js/portfolio.js"></script>
+<script src="./js/portfolioStore.js"></script>
+
+
+</body>
+</html>

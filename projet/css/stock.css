@@ -1,0 +1,192 @@
+.spacing-xl{
+  margin-top: 24px;
+  padding: 22px;
+}
+
+.stock-grid{
+  display:grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.stock-section-title{
+  margin-bottom: 14px;
+}
+
+.stock-select{
+  width: 320px;
+  padding: 10px;
+  border-radius: 10px;
+  background: #0B0E11;
+  border:1px solid var(--border);
+  color:white;
+}
+
+.stock-card-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom: 18px;
+}
+
+.stock-big-value{
+  font-size: 32px;
+  font-weight: 800;
+  margin-top: 6px;
+}
+
+.stock-predictions{
+  display:flex;
+  gap: 60px;
+}
+
+/* TOOLTIP */
+
+.tooltip{
+  position: relative;
+  cursor: help;
+  background: #1E2329;
+  border-radius: 50%;
+  width:22px;
+  height:22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.tooltip-text{
+  position:absolute;
+  bottom:140%;
+  left:50%;
+  transform: translateX(-50%);
+  background:#161A1E;
+  padding:10px;
+  border-radius:8px;
+  border:1px solid var(--border);
+  width:220px;
+  font-size:12px;
+  opacity:0;
+  pointer-events:none;
+  transition:0.2s;
+}
+
+.tooltip:hover .tooltip-text{
+  opacity:1;
+}
+
+/* INDICATORS */
+
+.indicator-grid{
+  display:flex;
+  gap:20px;
+}
+
+.indicator-box{
+  border:1px solid var(--border);
+  padding:16px;
+  border-radius:12px;
+  width:120px;
+}
+/* SELECT + BUY BUTTON ROW */
+
+.stock-select-row{
+  display:flex;
+  gap:20px;
+  align-items:center;
+  margin-top:15px;
+}
+
+/* BIG BUY BUTTON */
+
+.buy-btn{
+  background: linear-gradient(180deg,#02C076,#029A61);
+  border:none;
+  color:white;
+  font-weight:800;
+  font-size:18px;
+  padding:14px 38px;
+  border-radius:14px;
+  cursor:pointer;
+  box-shadow: 0 8px 25px rgba(2,192,118,0.25);
+  transition: all .2s ease;
+}
+
+/* HOVER */
+
+.buy-btn:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 14px 35px rgba(2,192,118,0.35);
+}
+
+/* CLICK */
+
+.buy-btn:active{
+  transform: scale(0.97);
+}
+
+/* MOBILE */
+
+@media (max-width:700px){
+  .stock-select-row{
+    flex-direction:column;
+    align-items:stretch;
+  }
+
+  .buy-btn{
+    width:100%;
+  }
+}
+.trade-modal{
+  position:fixed;
+  inset:0;
+  background: rgba(0,0,0,.72);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index: 9999;
+}
+
+.trade-box{
+  width: 360px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: var(--shadow);
+}
+
+.hidden{ display:none; }
+
+.trade-title-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom: 10px;
+}
+
+.icon-btn{
+  border:1px solid var(--border);
+  background: #1E2329;
+  color: var(--text);
+  border-radius: 10px;
+  padding: 6px 10px;
+  cursor:pointer;
+}
+
+.trade-meta{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top: 10px;
+}
+
+.trade-strong{
+  font-weight: 800;
+}
+
+.trade-actions{
+  display:flex;
+  gap: 10px;
+  margin-top: 12px;
+}

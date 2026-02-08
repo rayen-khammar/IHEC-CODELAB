@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BVMT Assistant — Dashboard</title>
+  <link rel="stylesheet" href="./css/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+      <div class="nav">
+    <div class="container nav-inner">
+<div class="brand">
+  <img src="./assets/AlphaPulse Logo.svg" class="brand-logo">
+</div>
+      </a>
+      <div class="nav-links">
+        <a class="active" href="./index.html">Home</a>
+        <a href="./dashboard.html">Dashboard</a>
+        <a href="./stock.html?symbol=SFBT">Stock</a>
+        <a href="./alerts.html">Alerts</a>
+        <a href="./profile.html">Profile</a>
+        <a href="./portfolio.html">Portfolio</a>
+
+      </div>
+    </div>
+  </div>
+    <main class="container">
+
+<div class="header">
+  <div>
+    <h1>Market Dashboard</h1>
+    <div class="sub">Indices, movers, sentiment, and anomalies</div>
+  </div>
+
+  <button class="btn" id="refreshBtn">Refresh</button>
+</div>
+
+<div class="grid3">
+
+  <div class="card">
+    <div class="card-title">TUNINDEX</div>
+    <div id="tunindexVal" class="card-value">--</div>
+    <div id="tunindexTrend" class="mini">24h trend —</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">TUNINDEX20</div>
+    <div id="tun20Val" class="card-value">--</div>
+    <div id="tun20Trend" class="mini">24h trend —</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Market Sentiment</div>
+    <div id="sentimentVal" class="card-value">--</div>
+    <div id="sentimentScore" class="mini">Score —</div>
+  </div>
+
+</div>
+
+<div class="grid2">
+
+  <div class="card">
+    <div class="card-title">Top Gainers</div>
+    <table class="table">
+      <tbody id="gainersTable"></tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Top Losers</div>
+    <table class="table">
+      <tbody id="losersTable"></tbody>
+    </table>
+  </div>
+
+</div>
+
+<div class="grid2">
+
+  <div class="card">
+    <div class="card-title">Recent Alerts</div>
+    <div id="alertsList"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Quick Open</div>
+    <div class="row">
+      <input id="quickSymbol" class="profile-input" placeholder="SFBT"/>
+      <button class="btn" id="quickOpenBtn">Open</button>
+    </div>
+  </div>
+
+</div>
+
+</main>
+
+<script src="./js/dashboard.js"></script>
+
+</body>
+</html>

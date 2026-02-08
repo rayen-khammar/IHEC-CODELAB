@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BVMT Assistant — Home</title>
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+
+  <div class="nav">
+    <div class="container nav-inner">
+<div class="brand">
+  <img src="./assets/AlphaPulse Logo.svg" class="brand-logo">
+</div>
+
+      </a>
+      <div class="nav-links">
+        <a class="active" href="./index.html">Home</a>
+        <a href="./dashboard.html">Dashboard</a>
+        <a href="./stock.html?symbol=SFBT">Stock</a>
+        <a href="./alerts.html">Alerts</a>
+        <a href="./profile.html">Profile</a>
+        <a href="./portfolio.html">Portfolio</a>
+
+      </div>
+    </div>
+  </div>
+
+  <main class="container">
+    <div class="header">
+      <div>
+        <h1>Smart market insights, made simple.</h1>
+        <div class="sub">Real-time market overview + predictions + alerts (via API).</div>
+      </div>
+      <a class="btn" href="./dashboard.html">Open Dashboard</a>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">What you get</div>
+        <div class="card-value">All-in-one trading assistant</div>
+        <div class="sub">
+          Market overview, gainers/losers, sentiment, anomaly alerts, and forecast predictions.
+        </div>
+      </div>
+
+      <div class="card" id="home-live">
+        <div class="card-title">Live snapshot</div>
+
+        <div class="show-while-loading">
+          <div class="skeleton" style="width: 50%"></div>
+          <div class="skeleton" style="width: 70%; margin-top: 10px"></div>
+          <div class="skeleton" style="width: 40%; margin-top: 10px"></div>
+        </div>
+
+        <div class="hide-while-loading">
+          <div class="row" style="margin-top: 10px;">
+            <div>
+              <div class="mini">TUNINDEX</div>
+              <div style="font-size: 22px; font-weight: 700;" id="home-tunindex">—</div>
+            </div>
+            <span class="badge" id="home-tunindex-change">—</span>
+          </div>
+          <div class="sub" style="margin-top: 10px;">
+            Updated: <span id="home-updated">—</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <div id="toast-host" class="toast-host"></div>
+  
+
+  <script type="module">
+    import { getMarketOverview } from "./js/api.js";
+    import { setLoading, fmtNumber, fmtPct, $, showToast } from "./js/ui.js";
+
+    const box = document.getElementById("home-live");
+    setLoading(box, true);
+
+    try {
+      const data = await getMarketOverview();
+      const tun = data.indices?.find(x => x.name === "TUNINDEX") || data.indices?.[0];
+
+      $("#home-tunindex").textContent = tun ? fmtNumber(tun.value) : "—";
+      const badge = $("#home-tunindex-change");
+
+      if (tun) {
+        badge.textContent = fmtPct(tun.change_percent);
+        badge.classList.remove("good","bad","warn");
+        badge.classList.add(tun.change_percent > 0 ? "good" : tun.change_percent < 0 ? "bad" : "warn");
+      }
+
+      $("#home-updated").textContent = new Date(data.last_updated).toLocaleString();
+    } catch (e) {
+      showToast("Failed to load live snapshot. Check API.", "error");
+    } finally {
+      setLoading(box, false);
+    }
+  </script>
+</body>
+</html>

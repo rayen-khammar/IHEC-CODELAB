@@ -55,23 +55,23 @@ function loadFakeData(){
   })
   */
 
-document.getElementById("pred1d").innerText = "12.450 TND";
-document.getElementById("pred5d").innerText = "12.980 TND";
+  document.getElementById("pred1d").innerText = "—";
+  document.getElementById("pred5d").innerText = "—";
 
   document.getElementById("predictionReason").innerText =
   "Strong earnings + positive macro outlook";
 
-  document.getElementById("recommendation").innerText = "BUY";
+  document.getElementById("recommendation").innerText = "—";
   document.getElementById("recommendReason").innerText =
   "Momentum breakout + institutional buying";
 
-  document.getElementById("sentimentValue").innerText = "Bullish";
+  document.getElementById("sentimentValue").innerText = "—";
   document.getElementById("sentimentReason").innerText =
   "Positive news + social media sentiment";
 
-  document.getElementById("rsiVal").innerText = "62";
-  document.getElementById("macdVal").innerText = "Positive";
-  document.getElementById("signalVal").innerText = "Buy";
+  document.getElementById("rsiVal").innerText = "—";
+  document.getElementById("macdVal").innerText = "—";
+  document.getElementById("signalVal").innerText = "—";
 
   document.getElementById("indicatorReason").innerText =
   "RSI above 60 + MACD crossover";
@@ -82,16 +82,11 @@ document.getElementById("pred5d").innerText = "12.980 TND";
 ================================ */
 
 select.addEventListener("change",()=>{
-
-  const symbol = select.value;
-
-  /*
-  FUTURE:
-  loadStockData(symbol)
-  */
-
-  loadFakeData();
-
+  if (typeof window.renderStockDemo === "function") {
+    window.renderStockDemo();
+  } else {
+    loadFakeData();
+  }
 });
 
 /* INIT */
@@ -225,14 +220,13 @@ document.addEventListener("DOMContentLoaded", () => {
   =============================== */
 
   function fakeApiForSymbol(symbol){
-    // You will replace this later with real API.
-    // It returns predicted prices + explanation strings.
     const base = {
       "SFBT": 12.300,
       "BIAT": 98.000,
       "DELICE": 9.100,
       "TPR": 6.800,
       "TELNET": 7.400,
+      "ATTIJARI BANK": 30.400,
     }[symbol] || 10.000;
 
     return {
@@ -252,11 +246,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const symbol = select ? select.value : "SFBT";
     const data = fakeApiForSymbol(symbol);
 
-    // Predictions as PRICES (your request)
     if($("pred1d")) $("pred1d").innerText = money(data.pred1d);
     if($("pred5d")) $("pred5d").innerText = money(data.pred5d);
 
-    // tooltips
     const pr = $("predictionReason");
     if(pr) pr.innerText = data.predictionReason;
 
@@ -269,7 +261,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const ir = $("indicatorReason");
     if(ir) ir.innerText = data.indicatorReason;
 
-    // Cards
     if($("recommendation")) $("recommendation").innerText = data.recommendation;
     if($("sentimentValue")) $("sentimentValue").innerText = data.sentiment;
 
@@ -352,6 +343,7 @@ document.addEventListener("DOMContentLoaded", () => {
      INIT
   =============================== */
 
+  window.renderStockDemo = renderStock;
   renderStock();
 
 });

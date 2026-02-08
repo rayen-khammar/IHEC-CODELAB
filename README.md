@@ -6,7 +6,7 @@ This repo is a **system integration demo**. It wires price prediction, sentiment
 ⚠️ **Demo scope**: the project is currently a **working demo** to show how the assistant behaves end‑to‑end. It uses **local APIs** and **provided historical data**. Live BVMT scraping is optional and can be plugged in later.
 
 #Presentation Link :
-https://docs.google.com/presentation/d/1-gZUfbkI96VEpF30lN71NUjE_L1CNOCg/edit?usp=sharing&ouid=112705951149915242501&rtpof=true&sd=true
+https://drive.google.com/file/d/156oVoDWg-wsKmroBO6P5HtXgHFPm0ZKE
 
 ## What’s inside (high‑level)
 

@@ -213,11 +213,9 @@ class MultiWebsiteScraper:
         return filepath
 
 
-# ============= USAGE =============
+#main 
 
-if __name__ == "__main__":
-    
-    WEBSITES = [
+WEBSITES = [
         {
             'name': 'irbe7',
             'base_url': 'https://irbe7.com',
@@ -240,10 +238,11 @@ if __name__ == "__main__":
         }
     ]
     
-    MAX_PAGES = 3
+MAX_PAGES = 3
     
-    scraper = MultiWebsiteScraper(WEBSITES, max_pages_per_site=MAX_PAGES)
-    scraper.scrape_all_websites()
+scraper = MultiWebsiteScraper(WEBSITES, max_pages_per_site=MAX_PAGES)
+scraper.scrape_all_websites()
     
-    # Save in all formats
-    scraper.save_for_nlp_text('nlp_corpus.txt')
+    # Save results
+scraper.save_for_nlp_text('nlp_corpus.txt')
+scraper.save_for_nlp_jsonl('nlp_data.jsonl')
